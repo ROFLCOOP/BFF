@@ -6,13 +6,11 @@ public class CharacterControl : MonoBehaviour
 {
     [Range(1, 100)]
     public int speed = 10;
-    Transform cameraTransform;
     public GameObject m_projectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -21,8 +19,8 @@ public class CharacterControl : MonoBehaviour
         Vector3 prevPos = transform.position;
         playerMove();
 
-        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+        Vector3 aimDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(aimDir.x, aimDir.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
 
         if(Input.GetMouseButtonDown(0))
@@ -36,6 +34,14 @@ public class CharacterControl : MonoBehaviour
             cam.transform.position = temp;
 
         }
+
+        Vector3 dir = transform.forward;
+
+        Debug.DrawLine(transform.position + (transform.forward * 0.5f), transform.position + transform.forward * 0.5f + dir * 5 , Color.green);
+        dir = Quaternion.AngleAxis(22.5f, Vector3.up) * dir;
+        Debug.DrawLine(transform.position + (transform.forward * 0.5f), transform.position + transform.forward * 0.5f + dir * 5.4f, Color.green);
+        dir = Quaternion.AngleAxis(-45, Vector3.up) * dir;
+        Debug.DrawLine(transform.position + (transform.forward * 0.5f), transform.position + transform.forward * 0.5f + dir * 5.4f, Color.green);
     }
 
     void shoot()
@@ -43,6 +49,46 @@ public class CharacterControl : MonoBehaviour
         GameObject Bullet = Instantiate(m_projectile, transform.position, transform.rotation);
         Bullet.GetComponent<BulletScript>().Facing = transform.forward;
         Bullet.GetComponent<BulletScript>().Velocity = 20;
+
+        int layerMask = 1 << 8;
+
+        layerMask = ~layerMask;
+
+        RaycastHit hit1;
+        RaycastHit hit2;
+        RaycastHit hit3;
+
+        Vector3 dir = transform.forward;
+        dir.Normalize();
+
+        if(!Physics.Raycast(transform.position + (transform.forward * 0.5f), dir, out hit1, 1.0f, layerMask))
+        {
+            Debug.DrawLine(transform.position + (transform.forward * 0.5f), transform.position + (transform.forward * 0.5f) + dir, Color.green);
+            Debug.Log("Raycast 1 did not hit anything");
+        }
+
+        dir = Quaternion.AngleAxis(45, Vector3.up) * dir;
+        dir.Normalize();
+
+        if (!Physics.Raycast(transform.position + transform.forward * 0.5f, dir, out hit2, 1.0f, layerMask))
+        {
+            Debug.Log("Raycast 2 did not hit anything");
+        }
+
+        dir = Quaternion.AngleAxis(-90, Vector3.up) * dir;
+        dir.Normalize();
+
+        if (!Physics.Raycast(transform.position + transform.forward * 0.5f, dir, out hit3, 1.0f, layerMask))
+        {
+            Debug.Log("Raycast 3 did not hit anything");
+        }
+
+        if ( hit1.distance < 0.6f && !hit1.collider.CompareTag("Projectile")
+         || hit2.distance < 0.6f && !hit2.collider.CompareTag("Projectile")
+         || hit3.distance < 0.6f && !hit3.collider.CompareTag("Projectile"))
+        {
+            Debug.Log("hit");
+        }
     }
 
 
