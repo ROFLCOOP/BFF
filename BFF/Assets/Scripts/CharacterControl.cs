@@ -20,14 +20,17 @@ public class CharacterControl : MonoBehaviour
     {
         playerMove();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+
+        if(Input.GetMouseButtonDown(0))
             shoot();
     }
 
     void shoot()
     {
-        GameObject Bullet = Instantiate(GameObject.Find("Bullet"), transform.position, transform.rotation);
-        //Bullet.SetActive(true);
+        GameObject Bullet = Instantiate(m_projectile, transform.position, transform.rotation);
         Bullet.GetComponent<BulletScript>().Facing = transform.forward;
         Bullet.GetComponent<BulletScript>().Velocity = 20;
     }
