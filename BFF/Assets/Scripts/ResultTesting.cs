@@ -16,7 +16,6 @@ public class ResultTesting : MonoBehaviour
     public Text timerText;
 
     public Image fadeToBlack;
-    public GameObject endResult;
 
     private bool isDead;
     // Start is called before the first frame update
@@ -58,4 +57,18 @@ public class ResultTesting : MonoBehaviour
         
     }
 
+    public int ReturnKills()
+    {
+        return enemyKill;
+    }
+
+    public int ReturnShots()
+    {
+        return shotCount;
+    }
+
+    public float ReturnTimer()
+    {
+        return timer + (60 * minutes);
+    }
 }

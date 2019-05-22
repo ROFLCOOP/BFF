@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class FadeToBlack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject hudScreen;
+    public GameObject resultScreen;
+    public void EndAnimation()
     {
+        hudScreen.SetActive(false);
+        resultScreen.SetActive(true);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisableLayer()
     {
-        
+        gameObject.SetActive(false);
     }
 }
