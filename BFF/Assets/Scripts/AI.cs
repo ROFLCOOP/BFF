@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AI : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public GameObject player;
+    private GameObject player;
 
     public int aggroRange;
     public float attackRange;
@@ -15,61 +15,39 @@ public class AI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = Time.deltaTime;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = agent.transform.position.magnitude - player.transform.position.magnitude;
-       // if (timer > 1)
-       // {
-            if(distance > aggroRange)
-            {
-                find();
-            }
-            else if (distance < aggroRange && distance > attackRange)
-            {
-                chase();
-            }
-            else if(distance < attackRange)
-            {
-                attack();
-            }
-            timer = 0;
+        float distance = Vector3.Distance(agent.transform.position, player.transform.position);
+        if (distance > aggroRange)
+        {
+            find();
+        }
+        else if (distance < aggroRange && distance > attackRange)
+        {
+            chase();
+        }
+        else if (distance < attackRange)
+        {
+            attack();
+        }
         Debug.Log(distance);
-        //}
     }
 
     void find()
     {
         Debug.Log("finding");
-       // if(agent.transform.position.magnitude - player.transform.position.magnitude < aggroRange)
-       // {
-       //     chase();
-       // }
-       // else
-       // {
-       //     //add some random direction and move that way
-       // }
+        agent.destination = new Vector3(this.gameObject.transform.position.x + Random.Range(-2, 2),
+                                        this.gameObject.transform.position.y,
+                                        this.gameObject.transform.position.z + Random.Range(-2, 2));
     }
 
     void chase()
     {
         agent.destination = player.transform.position;
-        //if(agent.transform.position.magnitude - player.transform.position.magnitude < attackRange)
-        //{
-        //    attack();
-        //}
-        //else if(agent.transform.position.magnitude - player.transform.position.magnitude > aggroRange)
-        //{
-        //    find();
-        //}
-        //else
-        //{
-        //    chase();
-        //}
-
     }
 
     void attack()
@@ -77,16 +55,17 @@ public class AI : MonoBehaviour
         agent.destination = player.transform.position;
         //do some attack
         Debug.Log("attack");
-       // if(agent.transform.position.magnitude - player.transform.position.magnitude > attackRange)
-       // {
-       //     chase();
-       // }
-       // else
-       // {
-       //     attack();
-       // }
-
     }
 
-    
+    bool isAlive()
+    {
+        if (1 == 2)//if hit by bullet 
+        {
+            //destroy game object
+            //return true
+        }
+        return false;
+    }
+
+
 }
