@@ -1,0 +1,56 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterControl : MonoBehaviour
+{
+    [Range(1, 100)]
+    public int speed = 10;
+    Transform cameraTransform;
+    public GameObject m_projectile;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        cameraTransform = GameObject.Find("Main Camera").GetComponent<Transform>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        playerMove();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            shoot();
+    }
+
+    void shoot()
+    {
+        GameObject Bullet = Instantiate(GameObject.Find("Bullet"), transform.position, transform.rotation);
+        //Bullet.SetActive(true);
+        Bullet.GetComponent<BulletScript>().Facing = transform.forward;
+        Bullet.GetComponent<BulletScript>().Velocity = 20;
+    }
+
+
+
+    void playerMove()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position += Vector3.back * speed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+    }
+}
