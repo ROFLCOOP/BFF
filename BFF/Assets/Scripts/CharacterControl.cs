@@ -18,6 +18,7 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 prevPos = transform.position;
         playerMove();
 
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -26,6 +27,15 @@ public class CharacterControl : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
             shoot();
+
+        if(transform.position != prevPos)
+        {
+            GameObject cam = GameObject.Find("Main Camera");
+            Vector3 temp = cam.transform.position;
+            temp.x = transform.position.x;
+            cam.transform.position = temp;
+
+        }
     }
 
     void shoot()
