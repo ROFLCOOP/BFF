@@ -7,6 +7,9 @@ public class AI : MonoBehaviour
 {
     public NavMeshAgent agent;
     public CharacterControl player;
+    private GameObject playerLocation;
+
+    public HealthPickup healthPickup;
 
 
     public int aggroRange;
@@ -17,17 +20,34 @@ public class AI : MonoBehaviour
 
     public int damage;
 
+    public float pickupDropChance;
+
+    public bool isDead; 
+
     // Start is called before the first frame update
     void Start()
     {
+        playerLocation = GameObject.FindGameObjectWithTag("Player");
         player.playerHealth = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isDead)
+        {
+            int randomNum = Random.Range(0, 100);
+
+            if (randomNum <= pickupDropChance)
+            {
+                Instantiate(healthPickup, this.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+
+            Destroy(this.gameObject);
+        }
+
         timer -= Time.deltaTime;
-        float distance = Vector3.Distance(agent.transform.position, player.gameObject.transform.position);
+        float distance = Vector3.Distance(agent.transform.position, playerLocation.transform.position);
         if (distance > aggroRange)
         {
             find();
@@ -53,12 +73,12 @@ public class AI : MonoBehaviour
 
     void chase()
     {
-        agent.destination = player.gameObject.transform.position;
+        agent.destination = playerLocation.transform.position;
     }
 
     void attack()
     {
-        agent.destination = player.gameObject.transform.position;
+        agent.destination = playerLocation.transform.position;
         //do some attack
         if (timer < 0)
         {
@@ -70,15 +90,6 @@ public class AI : MonoBehaviour
 
     }
 
-    bool isAlive()
-    {
-        if (1 == 2)//if hit by bullet 
-        {
-            //destroy game object
-            //return true
-        }
-        return false;
-    }
 
 
 }
