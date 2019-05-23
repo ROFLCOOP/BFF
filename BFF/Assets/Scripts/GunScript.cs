@@ -36,6 +36,7 @@ public class GunScript : MonoBehaviour
     private float shotCountDown = 0;
 
     GameObject parent;
+    public ParticleSystem gunParticle;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +53,10 @@ public class GunScript : MonoBehaviour
             shotCountDown = shotTime;
             shotOriginPoint = transform.position + transform.forward * 0.25f;
             shotDirection = transform.forward;
-            ParticleSystem ShootEffect = transform.Find("Rainbow").gameObject.GetComponent<ParticleSystem>();
-            ShootEffect.Play();
+            if (gunParticle != null)
+                gunParticle.Play();
+            else
+                Debug.Log("No Gun Particle Connected to Gun");
             shotCount++;
             Debug.Log("Shot Count = " + shotCount);
         }
@@ -103,8 +106,9 @@ public class GunScript : MonoBehaviour
                 if (hit[i].collider.CompareTag("Enemy")
                  && hit[i].distance <= (shotDistance * ((shotTime - shotCountDown) / shotTime)))
                 {
-                    enemy.GetComponent<AI>().isDead = true;
-
+                    if (enemy.GetComponent<AI>() != null)
+                        enemy.GetComponent<AI>().isDead = true;
+                    else { Destroy(enemy); }
                     //Destroy(enemy); // tell enemy they've been hit here
                     killCount++;
                     Debug.Log("Ray: " + i + " Hit Something! Kill Count = " + killCount);
