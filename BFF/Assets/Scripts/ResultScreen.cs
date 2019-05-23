@@ -14,8 +14,7 @@ public class ResultScreen : MonoBehaviour
     private float shotsFired;
     private float enemiesKilled;
 
-    public GameObject player;
-
+    public HUDController HUDController;
 
     private void OnEnable()
     {
@@ -26,7 +25,7 @@ public class ResultScreen : MonoBehaviour
     {
         float timer = 0;
         float minute = 0;
-        timer = player.GetComponent<ResultTesting>().ReturnTimer();
+        timer = HUDController.ReturnTimer();
         if(timer > 60)
         {
             minute = timer / 60;
@@ -35,8 +34,8 @@ public class ResultScreen : MonoBehaviour
         }
         totalTime.text = minute.ToString("00") + ":" + timer.ToString("00.00");
 
-        enemiesKilled = player.GetComponent<ResultTesting>().ReturnKills();
-        shotsFired = player.GetComponent<ResultTesting>().ReturnShots();
+        enemiesKilled = HUDController.ReturnKills();
+        shotsFired = HUDController.ReturnShots();
 
         totalEnemies.text = enemiesKilled.ToString();
         totalShots.text = shotsFired.ToString();

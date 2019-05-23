@@ -31,6 +31,7 @@ public class ResultTesting : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
         if (timer >= 60)
         {
             minutes++;
