@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
+  playerDead: 0
   HealthGauge: {fileID: 154413371}
   playerHealth: 100
   DeathParticleSys: {fileID: 7318233637661551649, guid: fcb699861c2eaa84f9fb057cd2c07f32,
@@ -1512,7 +1513,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1749271026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 718c538471392794b901bcec522c7228, type: 3}
+  m_Script: {fileID: 11500000, guid: acbbf8df4d719134f804d6f98bc06e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shotTime: 0.25
@@ -1520,6 +1521,7 @@ MonoBehaviour:
   shotStartWidth: 0.6
   shotEndWidth: 22.5
   shotRays: 5
+  shotDelay: 0.1
   gunParticle: {fileID: 427372350}
 --- !u!1 &1987384068
 GameObject:

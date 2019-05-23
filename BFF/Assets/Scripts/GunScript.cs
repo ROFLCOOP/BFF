@@ -24,6 +24,10 @@ public class GunScript : MonoBehaviour
     [Range(3, 50)]
     public int shotRays = 5;
 
+    [Tooltip("Delay between when the mouse is clicked and when the gun fires")]
+    [Range(0, 5)]
+    public float shotDelay = 0;
+
     private int killCount = 0;
     public int KillCount { get; }
     
@@ -38,6 +42,8 @@ public class GunScript : MonoBehaviour
     GameObject parent;
     public ParticleSystem gunParticle;
 
+    private bool particleNeedsToFire = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,19 +56,22 @@ public class GunScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && shotCountDown <= 0)
         {
-            shotCountDown = shotTime;
+            shotCountDown = shotTime + shotDelay;
             shotOriginPoint = transform.position + transform.forward * 0.25f;
             shotDirection = transform.forward;
-            if (gunParticle != null)
-                gunParticle.Play();
-            else
-                Debug.Log("No Gun Particle Connected to Gun");
+            particleNeedsToFire = true;
             shotCount++;
             Debug.Log("Shot Count = " + shotCount);
         }
 
-        if (shotCountDown > 0) // if shot needs to be based on time, put shoot in here
+        
+        if (shotCountDown > 0 && shotCountDown <= shotTime) // if shot needs to be based on time, put shoot in here
         {
+            if(particleNeedsToFire)
+                if (gunParticle != null)
+                    gunParticle.Play();
+                else
+                    Debug.Log("No Gun Particle Connected to Gun");
             //Everything between here and the next comment line is here for debugging
             Vector3 originPoint = shotOriginPoint + ((-Vector3.right * shotStartWidth) * 0.5f);
             Vector3 dir = shotDirection;
@@ -77,8 +86,10 @@ public class GunScript : MonoBehaviour
             //
 
             shoot();
-            shotCountDown -= Time.deltaTime;
         }
+
+        if(shotCountDown > 0)
+            shotCountDown -= Time.deltaTime;
     }
 
     void shoot()

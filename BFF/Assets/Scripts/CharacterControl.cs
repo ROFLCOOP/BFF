@@ -9,7 +9,7 @@ public class CharacterControl : MonoBehaviour
     [Range(1, 100)]
     public int playerSpeed = 10;
     
-    private bool playerDead = false;
+    public bool playerDead = false;
     public bool PlayerDead { get; }
     
 
