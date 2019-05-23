@@ -16,9 +16,13 @@ public class ResultScreen : MonoBehaviour
 
     public HUDController HUDController;
 
+
     private void OnEnable()
     {
         EndResults();
+        Debug.Log("This is working");
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void EndResults()
@@ -37,9 +41,9 @@ public class ResultScreen : MonoBehaviour
         enemiesKilled = HUDController.ReturnKills();
         shotsFired = HUDController.ReturnShots();
 
-        totalEnemies.text = enemiesKilled.ToString();
-        totalShots.text = shotsFired.ToString();
+        totalEnemies.text = enemiesKilled.ToString("000") + " Kills";
+        totalShots.text = shotsFired.ToString("000") + " Shots";
         float accuracy = (enemiesKilled / shotsFired)*100;
-        totalAccuracy.text = accuracy.ToString("F2");
+        totalAccuracy.text = accuracy.ToString("F2") + " %";
     }
 }

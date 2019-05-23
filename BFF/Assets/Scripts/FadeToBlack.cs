@@ -7,13 +7,16 @@ public class FadeToBlack : MonoBehaviour
 
     public GameObject hudScreen;
     public GameObject resultScreen;
-    public Camera sceneCamera;
+    public Camera[] sceneCameras;
 
     public void EndAnimation()
     {
         hudScreen.SetActive(false);
         resultScreen.SetActive(true);
-        sceneCamera.gameObject.SetActive(false);
+        foreach(Camera cam in sceneCameras)
+        {
+            cam.gameObject.SetActive(false);
+        }
 
     }
 
