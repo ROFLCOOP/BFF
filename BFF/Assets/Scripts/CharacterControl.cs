@@ -8,9 +8,10 @@ public class CharacterControl : MonoBehaviour
     [Tooltip("How fast should the player move('units'/second)")]
     [Range(1, 100)]
     public int playerSpeed = 10;
-
-    [HideInInspector]
-    public bool playerDead = false;
+    
+    private bool playerDead = false;
+    public bool PlayerDead { get; }
+    
 
     public GameObject HealthGauge;
     public float playerHealth = 100;
@@ -39,9 +40,15 @@ public class CharacterControl : MonoBehaviour
             HealthGauge.transform.position -= prevPos - transform.position;
         }
 
-        Image image = HealthGauge.GetComponent<Image>();
-        image.fillAmount -= playerHealth * 0.01f;
-        if (image.fillAmount <= 0) playerDead = true;
+        if (!playerDead)
+        {
+            Image image = HealthGauge.GetComponent<Image>();
+            Debug.Log(playerHealth);
+            image.fillAmount = playerHealth * 0.01f;
+
+            //playerHealth -= 5 * Time.deltaTime;
+            if (image.fillAmount <= 0) playerDead = true;
+        }
 
     }
 

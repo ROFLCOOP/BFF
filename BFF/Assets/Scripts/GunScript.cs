@@ -24,11 +24,11 @@ public class GunScript : MonoBehaviour
     [Range(3, 50)]
     public int shotRays = 5;
 
-
-    [HideInInspector]
-    public int killCount = 0;
-    [HideInInspector]
-    public int shotCount = 0;
+    private int killCount = 0;
+    public int KillCount { get; }
+    
+    private int shotCount = 0;
+    public int ShowCount { get; }
 
     Vector3 shotOriginPoint; //set every time the player shoots
     Vector3 shotDirection;
