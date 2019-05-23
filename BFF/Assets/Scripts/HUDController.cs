@@ -18,7 +18,8 @@ public class HUDController : MonoBehaviour
     public Image fadeToBlack;
 
     private bool isDead;
-    public CharacterControl CharacterControl;
+    public GunScript gunControl;
+    public CharacterControl characterControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +29,12 @@ public class HUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isDead = characterControl.PlayerDead;
         if (!isDead)
         {
             timer += Time.deltaTime;
-            //enemyKill = CharacterControl.KillCount;
-            //shotCount = CharacterControl.ShotCount;
+            //enemyKill = gunControl.KillCount;
+            //shotCount = gunControl.ShotCount;
         }
         if (timer >= 60)
         {
