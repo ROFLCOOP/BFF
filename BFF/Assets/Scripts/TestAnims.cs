@@ -7,11 +7,12 @@ public class TestAnims : MonoBehaviour
 
     private Animator foxy;
     private bool dead;
-    private bool fire;
+    private bool idle;
 
     // Start is called before the first frame update
     void Start()
     {
+        idle = true;
         foxy = GetComponent<Animator>();
         dead = false;
     }
@@ -21,46 +22,50 @@ public class TestAnims : MonoBehaviour
     {
         if (dead == false)
         {
-            if (Input.GetKey(KeyCode.W))
-            {
-                foxy.SetBool("right", true);
-            }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.D))
             {
-                foxy.SetBool("left", true);
+                foxy.SetBool("forwards", true);
+                idle = false;
             }
 
             if (Input.GetKey(KeyCode.A))
             {
-                foxy.SetBool("forwards", true);
+                foxy.SetBool("backwards", true);
+                idle = false; 
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Mouse0))
             {
-                foxy.SetBool("backwards", true);
+                if (idle == true)
+                {
+                    foxy.SetBool("stationary", true);
+                }
+
+                else if (idle == false)
+                {
+                    return;
+                }
             }
 
             //
 
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                foxy.SetBool("right", false);
-            }
 
-            if (Input.GetKeyUp(KeyCode.S))
+            if (Input.GetKeyUp(KeyCode.D))
             {
-                foxy.SetBool("left", false);
+                foxy.SetBool("forwards", false);
+                idle = true;
             }
 
             if (Input.GetKeyUp(KeyCode.A))
             {
-                foxy.SetBool("forwards", false);
+                foxy.SetBool("backwards", false);
+                idle = true;
             }
 
-            if (Input.GetKeyUp(KeyCode.D))
+            if (Input.GetKeyUp(KeyCode.Mouse0))
             {
-                foxy.SetBool("backwards", false);
+                foxy.SetBool("stationary", false);
             }
         }
 
