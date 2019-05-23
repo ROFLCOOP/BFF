@@ -31,7 +31,6 @@ public class HUDController : MonoBehaviour
         if (!isDead)
         {
             timer += Time.deltaTime;
-            Debug.Log("What");
             //enemyKill = CharacterControl.KillCount;
             //shotCount = CharacterControl.ShotCount;
         }
