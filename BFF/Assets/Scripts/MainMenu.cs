@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject creditPanel;
 
+    public GameObject buttonsub;
+
 
     public void StartGame()
     {
@@ -22,11 +24,13 @@ public class MainMenu : MonoBehaviour
     public void CreditButton()
     {
         creditPanel.SetActive(true);
+        buttonsub.gameObject.SetActive(false);
     }
 
     public void BackButton()
     {
         creditPanel.SetActive(false);
+        buttonsub.gameObject.SetActive(true);
     }
 
     public void MenuButton()
