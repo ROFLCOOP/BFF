@@ -13,17 +13,35 @@ public class CharacterControl : MonoBehaviour
     public bool PlayerDead { get; }
     
 
-    public GameObject HealthGauge;
+    public Image HealthGauge;
     public float playerHealth = 100;
+
+    public GameObject DeathParticleSys;
 
     // Start is called before the first frame update
     void Start()
     {
+        HealthGauge = HealthGauge.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!playerDead)
+        {
+            //Debug.Log(playerHealth);
+            HealthGauge.fillAmount = playerHealth * 0.01f;
+
+            //playerHealth -= 5 * Time.deltaTime;
+            if (HealthGauge.fillAmount <= 0) playerDead = true;
+        }
+        else
+        {
+            Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+            //Pass info to end game screen
+
+            Destroy(this);
+        }
         Vector3 prevPos = transform.position;
         playerMove();
 
@@ -40,15 +58,7 @@ public class CharacterControl : MonoBehaviour
             HealthGauge.transform.position -= prevPos - transform.position;
         }
 
-        if (!playerDead)
-        {
-            Image image = HealthGauge.GetComponent<Image>();
-            Debug.Log(playerHealth);
-            image.fillAmount = playerHealth * 0.01f;
 
-            //playerHealth -= 5 * Time.deltaTime;
-            if (image.fillAmount <= 0) playerDead = true;
-        }
 
     }
 

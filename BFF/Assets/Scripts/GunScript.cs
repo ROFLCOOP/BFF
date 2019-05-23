@@ -37,14 +37,11 @@ public class GunScript : MonoBehaviour
 
     GameObject parent;
 
-    [Tooltip("The Particle Effect to be used in the player shot")]
-    public GameObject shotParticle;
-
-
     // Start is called before the first frame update
     void Start()
     {
         parent = transform.parent.gameObject;
+        
     }
 
     // Update is called once per frame
@@ -103,7 +100,8 @@ public class GunScript : MonoBehaviour
                 enemyHit = true;
                 GameObject enemy = hit[i].collider.gameObject;
 
-                if (!hit[i].collider.CompareTag("Player") && hit[i].distance <= (shotDistance * ((shotTime - shotCountDown) / shotTime)))
+                if (hit[i].collider.CompareTag("Enemy")
+                 && hit[i].distance <= (shotDistance * ((shotTime - shotCountDown) / shotTime)))
                 {
                     enemy.GetComponent<AI>().isDead = true;
 
