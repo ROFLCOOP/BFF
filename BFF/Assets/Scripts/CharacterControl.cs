@@ -21,7 +21,7 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HealthGauge = HealthGauge.GetComponent<Image>();
+        //HealthGauge = HealthGauge.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -30,10 +30,10 @@ public class CharacterControl : MonoBehaviour
         if (!playerDead)
         {
             //Debug.Log(playerHealth);
-            HealthGauge.fillAmount = playerHealth * 0.01f;
+            //HealthGauge.fillAmount = playerHealth * 0.01f;
 
             //playerHealth -= 5 * Time.deltaTime;
-            if (HealthGauge.fillAmount <= 0) playerDead = true;
+            //if (HealthGauge.fillAmount <= 0) playerDead = true;
         }
         else
         {

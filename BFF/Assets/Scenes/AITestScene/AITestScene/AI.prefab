@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 958438643019274072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.01, y: 1.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2.0593736, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -130,8 +130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 958438643019274074}
   player: {fileID: 8201821701269568040, guid: 89864f088f77eb14789d5d2e1da3b8c6, type: 3}
-  healthPickup: {fileID: 7235892747957354834, guid: 026e81a368ddf19459228d7e211d75ca,
-    type: 3}
   aggroRange: 10
   attackRange: 1.7
   attackCooldown: 1
