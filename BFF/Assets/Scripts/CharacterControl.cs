@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -39,6 +40,14 @@ public class CharacterControl : MonoBehaviour
     Vector3 shotOriginPoint; //set every time the player shoots
     Vector3 shotDirection;
 
+
+    public bool playerDead = false;
+
+    public GameObject HealthGauge;
+
+    [Tooltip("The Particle Effect to be used in the player shot")]
+    public GameObject shotParticle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +68,8 @@ public class CharacterControl : MonoBehaviour
             shotCountDown = shotTime;
             shotOriginPoint = transform.position + transform.forward * 0.5f;
             shotDirection = transform.forward;
+            GameObject ShootEffect =  Instantiate(shotParticle, shotOriginPoint, Quaternion.Euler(shotDirection));
+
             shotCount++;
             Debug.Log("Shot Count = " + shotCount);
         }
@@ -68,11 +79,12 @@ public class CharacterControl : MonoBehaviour
             Vector3 temp = cam.transform.position;
             temp.x = transform.position.x;
             cam.transform.position = temp;
-
+            HealthGauge.transform.position -= prevPos - transform.position;
         }
 
         if (shotCountDown > 0) // if shot needs to be based on time, put shoot in here
         {
+            //Everything between here and the next comment line is here for debugging
             Vector3 originPoint = shotOriginPoint + ((-Vector3.right * shotStartWidth) * 0.5f);
             Vector3 dir = shotDirection;
             dir = Quaternion.AngleAxis(-shotEndWidth * 0.5f, Vector3.up) * dir;
@@ -83,9 +95,15 @@ public class CharacterControl : MonoBehaviour
                 dir = Quaternion.AngleAxis(shotEndWidth / (shotRays - 1), Vector3.up) * dir;
                 originPoint += (Vector3.right * shotStartWidth) / (shotRays - 1);
             }
+            //
+
             shoot();
             shotCountDown -= Time.deltaTime;
         }
+
+        Image image = HealthGauge.GetComponent<Image>();
+        image.fillAmount -= Time.deltaTime * 0.1f;
+
     }
 
     void shoot()
