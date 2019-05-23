@@ -24,25 +24,31 @@ public class Spawn : MonoBehaviour
     private float timer;
     private int childNumber;
 
+    public bool hitTrig;
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        waveCountdownText.gameObject.SetActive(false);
         timer = startTimeBetweenWaves;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
-
+        if (hitTrig == true)
+        {
+            waveCountdownText.gameObject.SetActive(true);
+            timer -= Time.deltaTime;
+        }
 
 
         if (numberOfChildren() == 0)
         {
-            waveCountdownText.gameObject.SetActive(true);
+            //waveCountdownText.gameObject.SetActive(true);
             if (timer < 0)
             {
                 startTimeBetweenWaves = startTimeBetweenWaves + addedTimeBetweenWaves;
@@ -61,6 +67,16 @@ public class Spawn : MonoBehaviour
         }
         waveCountdownText.text = timer.ToString("F2");
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.tag == "Player")
+    //    {
+    //        hitTrig = true;
+    //        waveCountdownText.gameObject.SetActive(true);
+    //
+    //    }
+    //}
 
     int numberOfChildren()
     {

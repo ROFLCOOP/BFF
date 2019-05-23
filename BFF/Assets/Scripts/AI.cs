@@ -9,7 +9,7 @@ public class AI : MonoBehaviour
     public CharacterControl player;
     private GameObject playerLocation;
 
-    //public HealthPickup healthPickup;
+    public HealthPickup healthPickup;
 
 
     public int aggroRange;
@@ -28,7 +28,11 @@ public class AI : MonoBehaviour
     void Start()
     {
         playerLocation = GameObject.FindGameObjectWithTag("Player");
-        player.playerHealth = 50;
+        ParticleSystem particleSystem = this.gameObject.GetComponent<ParticleSystem>();
+
+        
+        particleSystem.Play();
+
         isDead = false;
     }
 
@@ -41,7 +45,7 @@ public class AI : MonoBehaviour
 
             if (randomNum <= pickupDropChance)
             {
-                //Instantiate(healthPickup, this.transform.position, Quaternion.Euler(0, 0, 0));
+                Instantiate(healthPickup, this.transform.position, Quaternion.Euler(0, 0, 0));
             }
 
             Destroy(this.gameObject);
