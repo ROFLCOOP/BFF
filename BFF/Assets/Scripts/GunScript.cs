@@ -105,7 +105,9 @@ public class GunScript : MonoBehaviour
 
                 if (!hit[i].collider.CompareTag("Player") && hit[i].distance <= (shotDistance * ((shotTime - shotCountDown) / shotTime)))
                 {
-                    Destroy(enemy); // tell enemy they've been hit here
+                    enemy.GetComponent<AI>().isDead = true;
+
+                    //Destroy(enemy); // tell enemy they've been hit here
                     killCount++;
                     Debug.Log("Ray: " + i + " Hit Something! Kill Count = " + killCount);
                 }

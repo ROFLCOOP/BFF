@@ -28,7 +28,8 @@ public class AI : MonoBehaviour
     void Start()
     {
         playerLocation = GameObject.FindGameObjectWithTag("Player");
-        player.playerHealth = 100;
+        player.playerHealth = 50;
+        isDead = false;
     }
 
     // Update is called once per frame

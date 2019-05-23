@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 958438643019274049}
   m_Layer: 0
   m_Name: AI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 958438643019274074}
-  player: {fileID: 8201821701269568040, guid: 5cc09e81ee71c8843add92ff0567f3c7, type: 3}
+  player: {fileID: 8201821701269568040, guid: 89864f088f77eb14789d5d2e1da3b8c6, type: 3}
   healthPickup: {fileID: 7235892747957354834, guid: 026e81a368ddf19459228d7e211d75ca,
     type: 3}
   aggroRange: 10
@@ -137,6 +137,7 @@ MonoBehaviour:
   attackCooldown: 1
   damage: 25
   pickupDropChance: 0
+  isDead: 0
 --- !u!54 &958438643019274049
 Rigidbody:
   m_ObjectHideFlags: 0

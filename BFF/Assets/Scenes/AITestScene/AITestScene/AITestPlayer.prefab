@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8201821701269568040}
   m_Layer: 0
   m_Name: AITestPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  playerDead: 0
   HealthGauge: {fileID: 0}
   playerHealth: 100
