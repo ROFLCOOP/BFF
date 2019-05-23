@@ -77,6 +77,7 @@ public class AI : MonoBehaviour
         agent.destination = player.transform.position;
         //do some attack
         Debug.Log("attack");
+        
        // if(agent.transform.position.magnitude - player.transform.position.magnitude > attackRange)
        // {
        //     chase();
