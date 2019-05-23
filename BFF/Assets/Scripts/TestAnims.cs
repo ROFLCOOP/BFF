@@ -41,11 +41,6 @@ public class TestAnims : MonoBehaviour
                 foxy.SetBool("backwards", true);
             }
 
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-                foxy.SetBool("fire", true);
-            }
-
             //
 
             if (Input.GetKeyUp(KeyCode.W))
@@ -66,11 +61,6 @@ public class TestAnims : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.D))
             {
                 foxy.SetBool("backwards", false);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                foxy.SetBool("fire", false);
             }
         }
 
