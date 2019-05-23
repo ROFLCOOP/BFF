@@ -6,19 +6,19 @@ public class GunScript : MonoBehaviour
 {
     [Tooltip("How long should the shot take (seconds)")]
     [Range(0, 10)]
-    public float shotTime = 5;
+    public float shotTime = 0.25f;
 
     [Tooltip("How far should the shot go")]
     [Range(1, 10)]
-    public float shotDistance = 1;
+    public float shotDistance = 5;
 
     [Tooltip("How wide should the opening of the shot be")]
     [Range(0, 1)]
-    public float shotStartWidth = 0;
+    public float shotStartWidth = 0.6f;
 
     [Tooltip("How wide should the shot be (Degrees)")]
     [Range(1, 180)]
-    public float shotEndWidth = 45;
+    public float shotEndWidth = 22.5f;
 
     [Tooltip("How many rays are cast per shot, more means less of a gap between rays")]
     [Range(3, 50)]
