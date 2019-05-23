@@ -31,17 +31,21 @@ public class CharacterControl : MonoBehaviour
 
     private float shotCountDown = 0;
     
-    private int killCount = 0;
-    private int shotCount = 0;
+    [HideInInspector]
+    public int killCount = 0;
+    [HideInInspector]
+    public int shotCount = 0;
+    [HideInInspector]
+    public bool playerDead = false;
 
-    public int KillCount { get; }
-    public int ShotCount { get; }
+    //public int KillCount { get { return killCount; } }
+    //public int ShotCount { get { return shotCount; } }
+    //public bool PlayerDead { get; }
 
     Vector3 shotOriginPoint; //set every time the player shoots
     Vector3 shotDirection;
 
 
-    public bool playerDead = false;
 
     public GameObject HealthGauge;
 
@@ -68,7 +72,7 @@ public class CharacterControl : MonoBehaviour
             shotCountDown = shotTime;
             shotOriginPoint = transform.position + transform.forward * 0.5f;
             shotDirection = transform.forward;
-            GameObject ShootEffect =  Instantiate(shotParticle, shotOriginPoint, Quaternion.Euler(shotDirection));
+            GameObject ShootEffect =  Instantiate(shotParticle, transform);
 
             shotCount++;
             Debug.Log("Shot Count = " + shotCount);
@@ -103,6 +107,7 @@ public class CharacterControl : MonoBehaviour
 
         Image image = HealthGauge.GetComponent<Image>();
         image.fillAmount -= Time.deltaTime * 0.1f;
+        if (image.fillAmount <= 0) playerDead = true;
 
     }
 

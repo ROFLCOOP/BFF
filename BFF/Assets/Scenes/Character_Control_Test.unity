@@ -387,7 +387,8 @@ MonoBehaviour:
   shotRays: 5
   playerDead: 0
   HealthGauge: {fileID: 154413369}
-  shotParticle: {fileID: 0}
+  shotParticle: {fileID: 7318233637661551649, guid: fcb699861c2eaa84f9fb057cd2c07f32,
+    type: 3}
 --- !u!136 &326423361
 CapsuleCollider:
   m_ObjectHideFlags: 0
