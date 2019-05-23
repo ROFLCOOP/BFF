@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 501df8f77a015b84e82402a9305f6b91, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ddcc53e9fa917724385bda4320d353cd, type: 2}
 --- !u!1 &245384255
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +191,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245384255}
   m_CullTransparentMesh: 0
+--- !u!1 &453396810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2540080886067842220, guid: 5cc09e81ee71c8843add92ff0567f3c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2540080886601730813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &453396811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453396810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e054360200ec6f7469f3917023e8f908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 10
+  playerDead: 0
+  HealthGauge: {fileID: 0}
+  playerHealth: 100
 --- !u!1 &730044304
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +616,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb7f0478ccaecde43b39b15f73f596bd, type: 2}
+  - {fileID: 2100000, guid: faf176a0e392a0e4e82ff43081f183fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

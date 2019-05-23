@@ -6,22 +6,28 @@ using UnityEngine.AI;
 public class AI : MonoBehaviour
 {
     public NavMeshAgent agent;
-    private GameObject player;
+    public CharacterControl player;
+
 
     public int aggroRange;
     public float attackRange;
+    public float attackCooldown;
+
     private float timer;
+
+    public int damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player.playerHealth = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance(agent.transform.position, player.transform.position);
+        timer -= Time.deltaTime;
+        float distance = Vector3.Distance(agent.transform.position, player.gameObject.transform.position);
         if (distance > aggroRange)
         {
             find();
@@ -47,14 +53,21 @@ public class AI : MonoBehaviour
 
     void chase()
     {
-        agent.destination = player.transform.position;
+        agent.destination = player.gameObject.transform.position;
     }
 
     void attack()
     {
-        agent.destination = player.transform.position;
+        agent.destination = player.gameObject.transform.position;
         //do some attack
+        if (timer < 0)
+        {
+            player.playerHealth -= damage;
+            timer = attackCooldown;
+        }
         Debug.Log("attack");
+
+
     }
 
     bool isAlive()
