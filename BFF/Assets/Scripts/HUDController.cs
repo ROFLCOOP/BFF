@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultTesting : MonoBehaviour
+public class HUDController : MonoBehaviour
 {
     public int enemyKill;
     public int shotCount;
@@ -18,6 +18,7 @@ public class ResultTesting : MonoBehaviour
     public Image fadeToBlack;
 
     private bool isDead;
+    public CharacterControl CharacterControl;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,8 +31,10 @@ public class ResultTesting : MonoBehaviour
         if (!isDead)
         {
             timer += Time.deltaTime;
+            Debug.Log("What");
+            //enemyKill = CharacterControl.KillCount;
+            //shotCount = CharacterControl.ShotCount;
         }
-
         if (timer >= 60)
         {
             minutes++;
@@ -40,22 +43,11 @@ public class ResultTesting : MonoBehaviour
         timerText.text = minutes.ToString("00") + ":" + timer.ToString("00.00");
     }
 
-    public void AddKill()
-    {
-        enemyKill++;
-        enemyKillText.text = enemyKill.ToString("000") + " Kills";
-    }
-    public void AddShot()
-    {
-        shotCount++;
-        shotCountText.text = shotCount.ToString("000") + " Shots";
-    }
-
     public void OnDeath()
     {
         isDead = true;
         fadeToBlack.gameObject.SetActive(true);
-        
+
     }
 
     public int ReturnKills()
@@ -71,5 +63,16 @@ public class ResultTesting : MonoBehaviour
     public float ReturnTimer()
     {
         return timer + (60 * minutes);
+    }
+
+    public void AddKill()
+    {
+        enemyKill++;
+        enemyKillText.text = enemyKill.ToString("000") + " Kills";
+    }
+    public void AddShot()
+    {
+        shotCount++;
+        shotCountText.text = shotCount.ToString("000") + " Shots";
     }
 }

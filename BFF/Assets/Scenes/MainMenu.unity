@@ -1530,7 +1530,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030518, y: -43}
-  m_SizeDelta: {x: 651.1, y: 625.8}
+  m_SizeDelta: {x: 669.6, y: 625.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1271696125
 MonoBehaviour:
@@ -1566,9 +1566,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Designers\nDrue Waterman, Jake Rowe\n\nProgrammers\nAndrew Kenny, Zack
-    Welk\n\nArtists \nMarcus K, Malcolm Eden, Lucy\n\nSpecial thanks to the Church
-    of Scientology for ample parody material!\n\nRemember, kids... always get adult
-    supervision when committing acts of Satanism."
+    Welk\n\nArtists \nMarcus Kistas, Malcolm Eden, Lucy Kim\n\nSpecial thanks to the
+    Church of Scientology for ample parody material!\n\nRemember, kids... always get
+    adult supervision when committing acts of Satanism."
 --- !u!222 &1271696126
 CanvasRenderer:
   m_ObjectHideFlags: 0
