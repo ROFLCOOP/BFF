@@ -50,7 +50,7 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isDead)
+        if (isDead)
         {
             deathTimer += Time.deltaTime;
 
@@ -65,35 +65,37 @@ public class AI : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            else if(deathTimer >= animationTime)
+            else if (deathTimer >= animationTime)
             {
                 transform.position += Vector3.down * Time.deltaTime;
             }
             else if (GetComponent<BoxCollider>().enabled)
             {
-                if(animator != null)
+                if (animator != null)
                     animator.SetBool("enemydeath", true);
                 GetComponent<BoxCollider>().enabled = false;
             }
 
 
         }
-
-        timer -= Time.deltaTime;
-        float distance = Vector3.Distance(agent.transform.position, playerLocation.transform.position);
-        if (distance > aggroRange)
+        else
         {
-            find();
+            timer -= Time.deltaTime;
+            float distance = Vector3.Distance(agent.transform.position, playerLocation.transform.position);
+            if (distance > aggroRange)
+            {
+                find();
+            }
+            else if (distance < aggroRange && distance > attackRange)
+            {
+                chase();
+            }
+            else if (distance < attackRange)
+            {
+                attack();
+            }
+            Debug.Log(distance);
         }
-        else if (distance < aggroRange && distance > attackRange)
-        {
-            chase();
-        }
-        else if (distance < attackRange)
-        {
-            attack();
-        }
-        Debug.Log(distance);
     }
 
     void find()
