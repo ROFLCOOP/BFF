@@ -27,11 +27,17 @@ public class CharacterControl : MonoBehaviour
     [Header("footstep stuff")]
     public AudioSource footstepSource;
 
+    Animator animator;
+
+    [Range(0, 10)]
+    public float deathAnimationTime = 3;
+
+    float deathTimer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,31 +45,33 @@ public class CharacterControl : MonoBehaviour
     {
         if(HealthGauge != null)
             if (HealthGauge.fillAmount <= 0) playerDead = true;
-        if(playerDead)
+        if (playerDead && animator.GetBool("death, false"))
         {
-            if (DeathParticleSys != null)
-            {
-                ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
-                DeathPlay.Play();
-            }
+
+            ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+            DeathPlay.Play();
+            
+            animator.SetBool("death", true);
+
             //Pass info to end game screen
-
-            Destroy(gameObject);
+            deathTimer += Time.deltaTime;
         }
-        Vector3 prevPos = transform.position;
-        playerMove();
-        Vector3 aimDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        float angle = Mathf.Atan2(aimDir.x, aimDir.y) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        else
+        {
+            Vector3 prevPos = transform.position;
+            playerMove();
+            Vector3 aimDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+            float angle = Mathf.Atan2(aimDir.x, aimDir.y) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
 
-        //if (transform.position != prevPos)
-        //{
-        //    HealthGauge.transform.position += transform.position - prevPos;
-        //}
+            //if (transform.position != prevPos)
+            //{
+            //    HealthGauge.transform.position += transform.position - prevPos;
+            //}
 
-        HealthGauge.fillAmount = playerHealth * 0.01f;
-        if(footstepSource != null) footstepSource.transform.position = this.transform.position;
-
+            HealthGauge.fillAmount = playerHealth * 0.01f;
+            if (footstepSource != null) footstepSource.transform.position = this.transform.position;
+        }
     }
 
     void playerMove()
