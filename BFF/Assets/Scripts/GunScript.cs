@@ -69,9 +69,12 @@ public class GunScript : MonoBehaviour
         
         if (shotCountDown > 0 && shotCountDown <= shotTime) // if shot needs to be based on time, put shoot in here
         {
-            if(particleNeedsToFire)
+            if (particleNeedsToFire)
                 if (gunParticle != null)
+                {
                     gunParticle.Play();
+                    particleNeedsToFire = false;
+                }
                 else
                     Debug.Log("No Gun Particle Connected to Gun");
             //Everything between here and the next comment line is here for debugging
