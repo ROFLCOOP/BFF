@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0056eb645a575424d8edb44925e00d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healingAmount: 5
+  healingAmount: 10
   player: {fileID: 637243076, guid: 2046c15f6064b9c4d8eb8079e8fed895, type: 3}
+--- !u!65 &6396619904191593842
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3327858743302183236}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.69197327, y: 1.0511521, z: 0.77422667}
+  m_Center: {x: -0.027753238, y: -0.014741805, z: -0.00290297}
 --- !u!1001 &3327858743302283236
 PrefabInstance:
   m_ObjectHideFlags: 0
