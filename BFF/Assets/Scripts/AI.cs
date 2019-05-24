@@ -42,6 +42,7 @@ public class AI : MonoBehaviour
         playerLocation = GameObject.FindGameObjectWithTag("Player");
         ParticleSystem particleSystem = this.gameObject.GetComponent<ParticleSystem>();
 
+        player = playerLocation.GetComponent<CharacterControl>();
         
         particleSystem.Play();
 
