@@ -125,7 +125,6 @@ public class GunScript : MonoBehaviour
                         enemy.GetComponent<AI>().isDead = true;
                         killCount++;
                     }
-                    else { Destroy(enemy); }
                 }
             }
             dir = Quaternion.AngleAxis(shotEndWidth / (shotRays - 1), Vector3.up) * dir;
