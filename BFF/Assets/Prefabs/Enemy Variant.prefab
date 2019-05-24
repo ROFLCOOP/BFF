@@ -36,12 +36,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 13664317}
   player: {fileID: 0}
+  healthPickup: {fileID: 0}
   aggroRange: 100
   attackRange: 100
   attackCooldown: 100
   damage: 10
   pickupDropChance: 5
   isDead: 0
+--- !u!65 &9213440931528431676
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4061381901706146587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.296008, z: 1}
+  m_Center: {x: 0, y: 1.0967755, z: -0}
 --- !u!1001 &4061381901706114491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,6 +66,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 305267eb758c830468f8415d09a32c5f, type: 3}
       propertyPath: m_Name
       value: Enemy Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 305267eb758c830468f8415d09a32c5f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 305267eb758c830468f8415d09a32c5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 390cb829ae529d34a866e1f2ca0d1e9f, type: 2}
+    - target: {fileID: 9500000, guid: 305267eb758c830468f8415d09a32c5f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0d05825d32b73b44e83dee89110f6ca0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 305267eb758c830468f8415d09a32c5f, type: 3}
 --- !u!1 &4061381901706146587 stripped

@@ -29,6 +29,18 @@ public class TestAnims : MonoBehaviour
                 idle = false;
             }
 
+            if (Input.GetKey(KeyCode.W))
+            {
+                foxy.SetBool("forwards", true);
+                idle = false;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                foxy.SetBool("forwards", true);
+                idle = false;
+            }
+
             if (Input.GetKey(KeyCode.A))
             {
                 foxy.SetBool("backwards", true);
@@ -52,6 +64,18 @@ public class TestAnims : MonoBehaviour
 
 
             if (Input.GetKeyUp(KeyCode.D))
+            {
+                foxy.SetBool("forwards", false);
+                idle = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                foxy.SetBool("forwards", false);
+                idle = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.S))
             {
                 foxy.SetBool("forwards", false);
                 idle = true;
