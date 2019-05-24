@@ -22,11 +22,22 @@ public class AI : MonoBehaviour
 
     public float pickupDropChance;
 
-    public bool isDead; 
+    public bool isDead;
+
+    Animator animator;
+
+    [Tooltip("how much time the death animation takes")]
+    public const float animationTime = 3;
+
+    private float deathTimer = 0;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         playerLocation = GameObject.FindGameObjectWithTag("Player");
         ParticleSystem particleSystem = this.gameObject.GetComponent<ParticleSystem>();
 
@@ -41,14 +52,31 @@ public class AI : MonoBehaviour
     {
         if(isDead)
         {
-            int randomNum = Random.Range(0, 100);
+            deathTimer += Time.deltaTime;
 
-            if (randomNum <= pickupDropChance)
+            if (deathTimer >= animationTime + 3)
             {
-                Instantiate(healthPickup, this.transform.position, Quaternion.Euler(0, 0, 0));
+                int randomNum = Random.Range(0, 100);
+
+                if (randomNum <= pickupDropChance)
+                {
+                    Instantiate(healthPickup, transform.position, Quaternion.identity);
+                }
+
+                Destroy(gameObject);
+            }
+            else if(animator != null && animator.GetBool("enemydeath"))
+            {
+                transform.position += Vector3.down * Time.deltaTime;
+            }
+            else if (deathTimer >= animationTime)
+            {
+                if(animator != null)
+                    animator.SetBool("enemydeath", true);
+                GetComponent<BoxCollider>().enabled = false;
             }
 
-            Destroy(this.gameObject);
+
         }
 
         timer -= Time.deltaTime;
