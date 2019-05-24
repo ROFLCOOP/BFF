@@ -103,5 +103,8 @@ public class CharacterControl : MonoBehaviour
         }
     }
     
-
+    public bool ReturnDeath()
+    {
+        return playerDead;
+    }
 }

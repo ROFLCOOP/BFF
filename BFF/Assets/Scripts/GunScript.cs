@@ -136,4 +136,15 @@ public class GunScript : MonoBehaviour
             //Debug.Log("None of the rays hit anything.");
         }
     }
+
+    public int ReturnKills()
+    {
+        return killCount;
+    }
+
+    public int ReturnShots()
+    {
+        return shotCount;
+    }
+
 }
