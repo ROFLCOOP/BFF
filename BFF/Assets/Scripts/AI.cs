@@ -65,11 +65,11 @@ public class AI : MonoBehaviour
 
                 Destroy(gameObject);
             }
-            else if(animator != null && animator.GetBool("enemydeath"))
+            else if(deathTimer >= animationTime)
             {
                 transform.position += Vector3.down * Time.deltaTime;
             }
-            else if (deathTimer >= animationTime)
+            else if (GetComponent<BoxCollider>().enabled)
             {
                 if(animator != null)
                     animator.SetBool("enemydeath", true);
