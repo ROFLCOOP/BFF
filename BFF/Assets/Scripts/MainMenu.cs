@@ -6,9 +6,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject creditPanel;
-
     public GameObject buttonsub;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
+
+    private void Awake()
+    {
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+    }
 
     public void StartGame()
     {
