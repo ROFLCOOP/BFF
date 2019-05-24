@@ -16,17 +16,17 @@ public class TeleportPlayer : MonoBehaviour
     public Transform corridorTeleportLocation;
     public Transform templeTeleportLocation;
 
-    [Header("audiosource and clips")]
-    public AudioSource AudioSource;
+    [Header("audiosources")]
+    public AudioSource lobbyAudioSource;
+    public AudioSource corridorAudioSource;
+    public AudioSource templeAudioSource;
 
-    public AudioClip lobbyAmbient;
-    public AudioClip corridorAmbient;
-    public AudioClip templeAmbient;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource.PlayOneShot(lobbyAmbient);
+        lobbyAudioSource.Play();
     }
 
     // Update is called once per frame
@@ -39,17 +39,18 @@ public class TeleportPlayer : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            AudioSource.Stop();
+            lobbyAudioSource.Stop();
+            corridorAudioSource.Stop();
             if(this.gameObject.tag == "FoyerTeleport")
             {
                 player.gameObject.transform.position = corridorTeleportLocation.position;
-                AudioSource.PlayOneShot(corridorAmbient);
+                corridorAudioSource.Play();
                 
             }
             else if(this.gameObject.tag == "CorridorTeleport")
             {
                 player.gameObject.transform.position = templeTeleportLocation.position;
-                AudioSource.PlayOneShot(templeAmbient);
+                templeAudioSource.Play();
             }
         }
     }
