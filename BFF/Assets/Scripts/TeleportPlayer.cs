@@ -45,12 +45,14 @@ public class TeleportPlayer : MonoBehaviour
             {
                 player.gameObject.transform.position = corridorTeleportLocation.position;
                 corridorAudioSource.Play();
+                mainCam.GetComponent<CameraMovement>().currentZone = CameraMovement.CameraZone.CORRIDOR;
                 
             }
             else if(this.gameObject.tag == "CorridorTeleport")
             {
                 player.gameObject.transform.position = templeTeleportLocation.position;
                 templeAudioSource.Play();
+                mainCam.GetComponent<CameraMovement>().currentZone = CameraMovement.CameraZone.TEMPLE;
             }
         }
     }

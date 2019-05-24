@@ -38,8 +38,7 @@ public class GunScript : MonoBehaviour
     Vector3 shotDirection;
 
     private float shotCountDown = 0;
-
-    GameObject parent;
+    
 
     [Tooltip("Insert Existing Rainbow Particle System")]
     public ParticleSystem gunParticle;
@@ -49,7 +48,6 @@ public class GunScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parent = transform.parent.gameObject;
         
     }
 
