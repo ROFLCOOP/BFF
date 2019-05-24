@@ -79,27 +79,27 @@ public class CharacterControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            if (footstepSource != null) footstepSource.Play();           
+            if (footstepSource != null && !footstepSource.isPlaying) footstepSource.Play();           
             transform.position += Vector3.forward * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            if (footstepSource != null) footstepSource.Play();
+            if (footstepSource != null && !footstepSource.isPlaying) footstepSource.Play();
             transform.position += Vector3.back * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            if (footstepSource != null) footstepSource.Play();
+            if (footstepSource != null && !footstepSource.isPlaying) footstepSource.Play();
             transform.position += Vector3.left * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            if (footstepSource != null) footstepSource.Play();
+            if (footstepSource != null && !footstepSource.isPlaying) footstepSource.Play();
             transform.position += Vector3.right * playerSpeed * Time.deltaTime;
         }
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S))
         {
-            if (footstepSource != null) footstepSource.Stop();
+            if (footstepSource != null && footstepSource.isPlaying) footstepSource.Stop();
         }
     }
     
