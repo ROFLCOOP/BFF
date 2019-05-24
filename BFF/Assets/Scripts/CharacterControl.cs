@@ -47,18 +47,12 @@ public class CharacterControl : MonoBehaviour
         }
         Vector3 prevPos = transform.position;
         playerMove();
-
         Vector3 aimDir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(aimDir.x, aimDir.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
 
         if (transform.position != prevPos)
         {
-            GameObject cam = GameObject.Find("Main Camera");
-            Vector3 temp = cam.transform.position;
-            temp.x = transform.position.x;
-            temp.z = transform.position.z - cameraToPlayer;
-            cam.transform.position = temp;
             HealthGauge.transform.position += transform.position - prevPos;
         }
 
