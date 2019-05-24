@@ -31,7 +31,6 @@ public class MainMenu : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
-        Debug.Log("This is the Quit Button");
     }
 
     public void CreditButton()

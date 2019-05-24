@@ -11,6 +11,7 @@ public class AI : MonoBehaviour
 
     public HealthPickup healthPickup;
 
+    public GameObject deathParticles;
 
     public int aggroRange;
     public float attackRange;
@@ -56,6 +57,7 @@ public class AI : MonoBehaviour
 
             if (deathTimer >= animationTime + 3)
             {
+                deathParticles.SetActive(true);
                 int randomNum = Random.Range(0, 100);
 
                 if (randomNum <= pickupDropChance)
