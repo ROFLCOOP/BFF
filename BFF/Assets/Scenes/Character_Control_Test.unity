@@ -561,6 +561,7 @@ MonoBehaviour:
   playerHealth: 100
   DeathParticleSys: {fileID: 7318233637661551649, guid: fcb699861c2eaa84f9fb057cd2c07f32,
     type: 3}
+  cameraToPlayer: 6
 --- !u!136 &326423361
 CapsuleCollider:
   m_ObjectHideFlags: 0

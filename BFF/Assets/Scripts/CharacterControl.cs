@@ -18,6 +18,10 @@ public class CharacterControl : MonoBehaviour
 
     public GameObject DeathParticleSys;
 
+    [Tooltip("How far from the player is the camera on Z")]
+    [Range(1, 20)]
+    public float cameraToPlayer = 6;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +53,7 @@ public class CharacterControl : MonoBehaviour
             GameObject cam = GameObject.Find("Main Camera");
             Vector3 temp = cam.transform.position;
             temp.x = transform.position.x;
-            temp.z += transform.position.z - prevPos.z;
+            temp.z = transform.position.z - cameraToPlayer;
             cam.transform.position = temp;
             HealthGauge.transform.position += transform.position - prevPos;
         }
