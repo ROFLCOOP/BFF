@@ -16,8 +16,8 @@ public class CharacterControl : MonoBehaviour
     public Image HealthGauge;
     public float playerHealth = 100;
 
-    [Tooltip("Insert a Prefab for the player death particle system")]
-    public ParticleSystem DeathParticleSys;
+    //[Tooltip("Insert a Prefab for the player death particle system")]
+    //public ParticleSystem DeathParticleSys;
 
     [Tooltip("How far from the player is the camera on Z")]
     [Range(1, 20)]
@@ -47,11 +47,11 @@ public class CharacterControl : MonoBehaviour
         if (playerDead && !animator.GetBool("death"))
         {
 
-            if (DeathParticleSys != null)
-            {
-                ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
-                DeathPlay.Play();
-            }
+            //if (DeathParticleSys != null)
+            //{
+            //    ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+            //    DeathPlay.Play();
+            //}
             animator.SetBool("death", true);
 
             //Pass info to end game screen
