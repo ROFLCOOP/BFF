@@ -45,12 +45,14 @@ public class CharacterControl : MonoBehaviour
     {
         if(HealthGauge != null)
             if (HealthGauge.fillAmount <= 0) playerDead = true;
-        if (playerDead && animator.GetBool("death, false"))
+        if (playerDead && !animator.GetBool("death"))
         {
 
-            ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
-            DeathPlay.Play();
-            
+            if (DeathParticleSys != null)
+            {
+                ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+                DeathPlay.Play();
+            }
             animator.SetBool("death", true);
 
             //Pass info to end game screen
