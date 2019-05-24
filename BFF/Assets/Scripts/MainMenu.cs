@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/**
+ * Simplistic Main menu script with an added DontDestroyOnLoad added on awake to make sure
+ * the cursor is the same throughout the game itself
+ * 
+ * Also includes displaying and hiding the credits while on the main screen
+ * */
 public class MainMenu : MonoBehaviour
 {
     public GameObject creditPanel;
     public GameObject buttonsub;
-    public Texture2D cursorTexture;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
 
+    public GameObject cursorControl;
 
+    
     private void Awake()
     {
-        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        DontDestroyOnLoad(cursorControl);
     }
 
     public void StartGame()
