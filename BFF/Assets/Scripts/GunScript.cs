@@ -40,6 +40,8 @@ public class GunScript : MonoBehaviour
     private float shotCountDown = 0;
 
     GameObject parent;
+
+    [Tooltip("Insert Existing Rainbow Particle System")]
     public ParticleSystem gunParticle;
 
     private bool particleNeedsToFire = false;

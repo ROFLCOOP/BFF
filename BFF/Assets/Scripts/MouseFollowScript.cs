@@ -15,6 +15,5 @@ public class MouseFollowScript : MonoBehaviour
     void Update()
     {
         transform.position = Input.mousePosition;
-        Debug.Log(Cursor.lockState);
     }
 }

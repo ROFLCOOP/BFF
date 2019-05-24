@@ -9,13 +9,14 @@ public class CharacterControl : MonoBehaviour
     [Range(1, 100)]
     public int playerSpeed = 10;
     
-    public bool playerDead = false;
+    private bool playerDead = false;
     public bool PlayerDead { get; }
     
 
     public Image HealthGauge;
     public float playerHealth = 100;
 
+    [Tooltip("Insert a Prefab for the player death particle system")]
     public ParticleSystem DeathParticleSys;
 
     [Tooltip("How far from the player is the camera on Z")]
