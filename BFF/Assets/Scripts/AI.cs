@@ -26,6 +26,8 @@ public class AI : MonoBehaviour
     public bool isDead;
 
     Animator animator;
+    public AudioSource aSource;
+    public AudioClip biteClip;
 
     [Tooltip("how much time the death animation takes")]
     public const float animationTime = 3;
@@ -38,6 +40,7 @@ public class AI : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        aSource = GetComponentInChildren<AudioSource>();
 
         playerLocation = GameObject.FindGameObjectWithTag("Player");
         ParticleSystem particleSystem = this.gameObject.GetComponent<ParticleSystem>();
