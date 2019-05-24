@@ -43,8 +43,7 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HealthGauge != null)
-            if (HealthGauge.fillAmount <= 0) playerDead = true;
+        if (playerHealth <= 0) playerDead = true;
         if (playerDead && !animator.GetBool("death"))
         {
 
