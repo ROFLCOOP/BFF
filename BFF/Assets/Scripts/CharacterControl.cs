@@ -51,11 +51,12 @@ public class CharacterControl : MonoBehaviour
         float angle = Mathf.Atan2(aimDir.x, aimDir.y) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
 
-        if (transform.position != prevPos)
-        {
-            HealthGauge.transform.position += transform.position - prevPos;
-        }
+        //if (transform.position != prevPos)
+        //{
+        //    HealthGauge.transform.position += transform.position - prevPos;
+        //}
 
+        HealthGauge.fillAmount = playerHealth * 0.01f;
 
 
     }
