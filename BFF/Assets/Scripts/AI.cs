@@ -56,7 +56,6 @@ public class AI : MonoBehaviour
         {
             deathTimer += Time.deltaTime;
             deathParticles.SetActive(true);
-            Debug.Log("Is Dead");
 
             if (deathTimer >= animationTime + 3)
             {

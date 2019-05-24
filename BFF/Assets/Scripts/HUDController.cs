@@ -19,6 +19,7 @@ public class HUDController : MonoBehaviour
     public Image fadeToBlack;
 
     private bool isDead;
+    private bool startTimer;
     public GunScript gunControl;
     public CharacterControl characterControl;
 
@@ -29,28 +30,33 @@ public class HUDController : MonoBehaviour
     {
         isDead = false;
         isPaused = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        isDead = characterControl.ReturnDeath(); ;
+        Debug.Log(isDead);
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
             Debug.Log("Esc is pressed");
             PauseButton();
         }
-        isDead = characterControl.PlayerDead;
-        if (!isDead && !isPaused)
+        if (!isDead || !isPaused)
         {
-            timer += Time.deltaTime;
-            enemyKill = gunControl.KillCount;
-            shotCount = gunControl.ShotCount;
+            if(startTimer)
+                timer += Time.deltaTime;
+            enemyKill = gunControl.ReturnKills(); ;
+            shotCount = gunControl.ReturnShots(); ;
         }
         if (timer >= 60)
         {
             minutes++;
             timer = 0;
+        }
+        if(isDead)
+        {
+            OnDeath();
         }
         timerText.text = minutes.ToString("00") + ":" + timer.ToString("00.00");
     }
@@ -84,6 +90,11 @@ public class HUDController : MonoBehaviour
         Application.Quit();
     }
 
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void OnDeath()
     {
         isDead = true;
@@ -115,5 +126,10 @@ public class HUDController : MonoBehaviour
     {
         shotCount++;
         shotCountText.text = shotCount.ToString("000") + " Shots";
+    }
+
+    public void StartTimer()
+    {
+        startTimer = true;
     }
 }
