@@ -57,7 +57,7 @@ public class CharacterControl : MonoBehaviour
             //Pass info to end game screen
             deathTimer += Time.deltaTime;
         }
-        else if (!GameObject.Find("HUDCanvas").GetComponent<HUDController>().isPaused)
+        else if (!GameObject.Find("HUDCanvas").GetComponent<HUDController>().isPaused && !playerDead)
         {
             Vector3 prevPos = transform.position;
             playerMove();
