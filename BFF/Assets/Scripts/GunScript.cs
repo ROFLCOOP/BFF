@@ -32,7 +32,7 @@ public class GunScript : MonoBehaviour
     public int KillCount { get; }
     
     private int shotCount = 0;
-    public int ShowCount { get; }
+    public int ShotCount { get; }
 
     Vector3 shotOriginPoint; //set every time the player shoots
     Vector3 shotDirection;

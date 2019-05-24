@@ -44,7 +44,7 @@ public class AI : MonoBehaviour
 
         player = playerLocation.GetComponent<CharacterControl>();
         
-        particleSystem.Play();
+        //particleSystem.Play();
 
         isDead = false;
     }
@@ -55,10 +55,12 @@ public class AI : MonoBehaviour
         if (isDead)
         {
             deathTimer += Time.deltaTime;
+            deathParticles.SetActive(true);
+            Debug.Log("Is Dead");
 
             if (deathTimer >= animationTime + 3)
             {
-                deathParticles.SetActive(true);
+                
                 int randomNum = Random.Range(0, 100);
 
                 if (randomNum <= pickupDropChance)
@@ -97,13 +99,13 @@ public class AI : MonoBehaviour
             {
                 attack();
             }
-            Debug.Log(distance);
+            //Debug.Log(distance);
         }
     }
 
     void find()
     {
-        Debug.Log("finding");
+        //Debug.Log("finding");
         agent.destination = new Vector3(this.gameObject.transform.position.x + Random.Range(-2, 2),
                                         this.gameObject.transform.position.y,
                                         this.gameObject.transform.position.z + Random.Range(-2, 2));
@@ -123,7 +125,7 @@ public class AI : MonoBehaviour
             player.playerHealth -= damage;
             timer = attackCooldown;
         }
-        Debug.Log("attack");
+        //Debug.Log("attack");
 
 
     }

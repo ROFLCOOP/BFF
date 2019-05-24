@@ -29,6 +29,7 @@ public class HUDController : MonoBehaviour
     {
         isDead = false;
         isPaused = false;
+
     }
 
     // Update is called once per frame
@@ -39,12 +40,12 @@ public class HUDController : MonoBehaviour
             Debug.Log("Esc is pressed");
             PauseButton();
         }
-        //isDead = characterControl.PlayerDead;
+        isDead = characterControl.PlayerDead;
         if (!isDead && !isPaused)
         {
             timer += Time.deltaTime;
-            //enemyKill = gunControl.KillCount;
-            //shotCount = gunControl.ShotCount;
+            enemyKill = gunControl.KillCount;
+            shotCount = gunControl.ShotCount;
         }
         if (timer >= 60)
         {
