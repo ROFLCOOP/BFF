@@ -23,6 +23,11 @@ public class CharacterControl : MonoBehaviour
     [Range(1, 20)]
     public float cameraToPlayer = 6;
 
+
+    [Header("footstep stuff")]
+    public AudioSource footstepSource;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +62,7 @@ public class CharacterControl : MonoBehaviour
         //}
 
         HealthGauge.fillAmount = playerHealth * 0.01f;
-
+        footstepSource.transform.position = this.transform.position;
 
     }
 
@@ -65,19 +70,27 @@ public class CharacterControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
+            footstepSource.Play();           
             transform.position += Vector3.forward * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
+            footstepSource.Play();
             transform.position += Vector3.back * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
+            footstepSource.Play();
             transform.position += Vector3.left * playerSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
+            footstepSource.Play();
             transform.position += Vector3.right * playerSpeed * Time.deltaTime;
+        }
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S))
+        {
+            footstepSource.Stop();
         }
     }
     
