@@ -57,48 +57,48 @@ public class GunScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && shotCountDown <= 0)
-        {
-            shotCountDown = shotTime + shotDelay;
-            shotOriginPoint = transform.position + transform.forward * 0.25f;
-            shotDirection = transform.forward;
-            particleNeedsToFire = true;
-            shotCount++;
-            Debug.Log("Shot Count = " + shotCount);
-        }
-
-        
-        if (shotCountDown > 0 && shotCountDown <= shotTime) // if shot needs to be based on time, put shoot in here
-        {
-            if (particleNeedsToFire)
-                if (gunParticle != null)
-                {
-                    randNum = Random.Range(0, shotClips.Length);
-                    audioSource.clip = shotClips[randNum];
-                    audioSource.Play();
-                    gunParticle.Play();
-                    particleNeedsToFire = false;
-                }
-                else
-                    Debug.Log("No Gun Particle Connected to Gun");
-            //Everything between here and the next comment line is here for debugging
-            Vector3 originPoint = shotOriginPoint + ((-Vector3.right * shotStartWidth) * 0.5f);
-            Vector3 dir = shotDirection;
-            dir = Quaternion.AngleAxis(-shotEndWidth * 0.5f, Vector3.up) * dir;
-            for (int i = 0; i < shotRays; i++)
-            {
-                Debug.DrawLine(originPoint + Vector3.up * 0.1f, (originPoint + Vector3.up * 0.1f) + dir * (shotDistance * ((shotTime - shotCountDown) / shotTime)), Color.red);
-                Debug.DrawLine(originPoint, originPoint + dir * shotDistance, Color.blue);
-                dir = Quaternion.AngleAxis(shotEndWidth / (shotRays - 1), Vector3.up) * dir;
-                originPoint += (Vector3.right * shotStartWidth) / (shotRays - 1);
-            }
-            //
-
-            shoot();
-        }
-
-        if(shotCountDown > 0)
-            shotCountDown -= Time.deltaTime;
+        if (!GameObject.Find("HUDCanvas").GetComponent<HUDController>().isPaused && !GameObject.Find("Fox").GetComponent<CharacterControl>().PlayerDead)
+        {
+            if (Input.GetMouseButtonDown(0) && shotCountDown <= 0)
+            {
+                shotCountDown = shotTime + shotDelay;
+                shotOriginPoint = transform.position + transform.forward * 0.25f;
+                shotDirection = transform.forward;
+                particleNeedsToFire = true;
+                shotCount++;
+                Debug.Log("Shot Count = " + shotCount);
+            }
+
+
+            if (shotCountDown > 0 && shotCountDown <= shotTime) // if shot needs to be based on time, put shoot in here
+            {
+                if (particleNeedsToFire)
+                    if (gunParticle != null)
+                    {
+                        gunParticle.Play();
+                        particleNeedsToFire = false;
+                    }
+                    else
+                        Debug.Log("No Gun Particle Connected to Gun");
+                //Everything between here and the next comment line is here for debugging
+                Vector3 originPoint = shotOriginPoint + ((-Vector3.right * shotStartWidth) * 0.5f);
+                Vector3 dir = shotDirection;
+                dir = Quaternion.AngleAxis(-shotEndWidth * 0.5f, Vector3.up) * dir;
+                for (int i = 0; i < shotRays; i++)
+                {
+                    Debug.DrawLine(originPoint + Vector3.up * 0.1f, (originPoint + Vector3.up * 0.1f) + dir * (shotDistance * ((shotTime - shotCountDown) / shotTime)), Color.red);
+                    Debug.DrawLine(originPoint, originPoint + dir * shotDistance, Color.blue);
+                    dir = Quaternion.AngleAxis(shotEndWidth / (shotRays - 1), Vector3.up) * dir;
+                    originPoint += (Vector3.right * shotStartWidth) / (shotRays - 1);
+                }
+                //
+
+                shoot();
+            }
+
+            if (shotCountDown > 0)
+                shotCountDown -= Time.deltaTime;
+        }
     }
 
     void shoot()
