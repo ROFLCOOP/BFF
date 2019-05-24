@@ -120,14 +120,13 @@ public class GunScript : MonoBehaviour
                 if (hit[i].collider.CompareTag("Enemy")
                  && hit[i].distance <= (shotDistance * ((shotTime - shotCountDown) / shotTime)))
                 {
-                    if (enemy.GetComponent<AI>() != null)
+                    if (enemy.GetComponent<AI>() != null && !enemy.GetComponent<AI>().isDead)
+                    {
                         enemy.GetComponent<AI>().isDead = true;
+                        killCount++;
+                    }
                     else { Destroy(enemy); }
-                    //Destroy(enemy); // tell enemy they've been hit here
-                    killCount++;
-                    Debug.Log("Ray: " + i + " Hit Something! Kill Count = " + killCount);
                 }
-                // optional: compare distance to hit object. e.g. if distance > shotTimer, enemy wasn't hit.
             }
             dir = Quaternion.AngleAxis(shotEndWidth / (shotRays - 1), Vector3.up) * dir;
             origin += (transform.right * shotStartWidth) / (shotRays - 1);
