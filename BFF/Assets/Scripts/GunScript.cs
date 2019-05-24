@@ -42,13 +42,16 @@ public class GunScript : MonoBehaviour
 
     [Tooltip("Insert Existing Rainbow Particle System")]
     public ParticleSystem gunParticle;
+    private AudioSource audioSource;
+    public AudioClip[] shotClips;
+    private int randNum;
 
     private bool particleNeedsToFire = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -70,6 +73,9 @@ public class GunScript : MonoBehaviour
             if (particleNeedsToFire)
                 if (gunParticle != null)
                 {
+                    randNum = Random.Range(0, shotClips.Length);
+                    audioSource.clip = shotClips[randNum];
+                    audioSource.Play();
                     gunParticle.Play();
                     particleNeedsToFire = false;
                 }
