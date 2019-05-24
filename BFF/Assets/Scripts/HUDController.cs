@@ -35,7 +35,7 @@ public class HUDController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isDead = characterControl.ReturnDeath(); ;
+       isDead = characterControl.ReturnDeath(); ;
         Debug.Log(isDead);
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -46,7 +46,7 @@ public class HUDController : MonoBehaviour
         {
             if(startTimer)
                 timer += Time.deltaTime;
-            enemyKill = gunControl.ReturnKills(); ;
+           enemyKill = gunControl.ReturnKills(); ;
             shotCount = gunControl.ReturnShots(); ;
         }
         if (timer >= 60)

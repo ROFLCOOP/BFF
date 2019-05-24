@@ -92,13 +92,5 @@ public class TestAnims : MonoBehaviour
                 foxy.SetBool("stationary", false);
             }
         }
-
-        // Testing death anim.
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            foxy.SetBool("death", true);
-            dead = true;
-        }
     }
 }
