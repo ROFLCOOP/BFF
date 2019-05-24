@@ -16,7 +16,7 @@ public class CharacterControl : MonoBehaviour
     public Image HealthGauge;
     public float playerHealth = 100;
 
-    public GameObject DeathParticleSys;
+    public ParticleSystem DeathParticleSys;
 
     [Tooltip("How far from the player is the camera on Z")]
     [Range(1, 20)]
@@ -35,8 +35,11 @@ public class CharacterControl : MonoBehaviour
             if (HealthGauge.fillAmount <= 0) playerDead = true;
         if(playerDead)
         {
-            if(DeathParticleSys != null)
-                Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+            if (DeathParticleSys != null)
+            {
+                ParticleSystem DeathPlay = Instantiate(DeathParticleSys, transform.position, Quaternion.identity);
+                DeathPlay.Play();
+            }
             //Pass info to end game screen
 
             Destroy(gameObject);
