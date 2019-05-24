@@ -77,6 +77,7 @@ public class AI : MonoBehaviour
             {
                 if (animator != null)
                     animator.SetBool("enemydeath", true);
+                GetComponent<NavMeshAgent>().speed = 0;
                 GetComponent<BoxCollider>().enabled = false;
             }
 
